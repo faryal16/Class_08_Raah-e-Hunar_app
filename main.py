@@ -6,7 +6,7 @@ from core.job import JobOpportunity
 from core.feedback import FeedbackSystem
 from core.jobsearch import JobSearcher
 
-job_searcher = JobSearcher()
+
 # Load feedback only once on app start
 if "feedback_loaded" not in st.session_state:
     FeedbackSystem.load_feedback()
@@ -150,6 +150,8 @@ elif page == "💬 Feedback":
 # Search Online Jobs (API placeholder)
 elif page == "🌐 Search Online Jobs":
     st.header("🌐 Search Online Jobs")
+    # call the class
+    job_searcher = JobSearcher()
 
     # Let user pick from popular categories
     categories = [
@@ -158,16 +160,8 @@ elif page == "🌐 Search Online Jobs":
 
     selected_category = st.selectbox("Choose a job category", categories)
 
-    # Search bar for keyword (optional)
-    query = st.text_input("🔍 Enter keyword (e.g., 'developer', 'UI', 'teacher')")
-
-    # Combine category + keyword
-    if selected_category != "All":
-        search_term = selected_category
-        if query:
-            search_term += f" {query}"
-    else:
-        search_term = query
+    # Determine search term based on category
+    search_term = None if selected_category == "All" else selected_category
 
     if search_term:
         with st.spinner("🔎 Searching for jobs..."):
@@ -181,9 +175,9 @@ elif page == "🌐 Search Online Jobs":
                 st.markdown(f"[📝 Apply Here]({job.get('url', '#')})")
                 st.markdown("---")
         else:
-            st.info("No jobs found for this search.")
+            st.info("No jobs found for this category.")
     else:
-        st.info("Please enter a keyword or select a category to begin.")
+        st.info("Please select a category to begin.")
 
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown(
