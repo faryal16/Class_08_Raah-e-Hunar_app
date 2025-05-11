@@ -34,13 +34,12 @@
    ```bash
    git clone https://github.com/your-username/raah-e-hunar.git
    cd raah-e-hunar
-
+   ```
 2. **Install Dependencies**:
 Install the required Python packages by running:
 
 ```bash
-Copy
-Edit
+
 pip install -r requirements.txt
 ```
 
@@ -48,16 +47,14 @@ pip install -r requirements.txt
 To launch the app, run the following command in the project directory:
 
 ```bash
-Copy
-Edit
+
 streamlit run app.py
 ```
 4. **Visit the App**:
 After running the above command, the app will open automatically in your default browser. If not, visit:
 
 ```bash
-Copy
-Edit
+
 http://localhost:8501
 ```
 
@@ -74,7 +71,7 @@ http://localhost:8501
 
 ## Try the App
 You can try the app directly by visiting the following link:
-Raah-e-Hunar on Streamlit[]
+[Raah-e-Hunar on Streamlit](https://class08-raah-e-hunar-app.streamlit.app/)
 
 ### Feedback
 Your feedback is essential to help us improve the platform! You can provide feedback on the app’s features and performance through the Feedback section in the app.
