@@ -131,7 +131,7 @@ python-dotenv
 ```
 ### Try the App
 Try it yourself by running the app locally or access the deployed app (if hosted) at:
-(Raah-e-Hunar on Streamlit)[https://class08-raah-e-hunar-app.streamlit.app/]
+[Raah-e-Hunar on Streamlit](https://class08-raah-e-hunar-app.streamlit.app/)
 
 ### Feedback
 Your feedback matters! Please use the Feedback tab inside the app to submit your suggestions or report issues.
