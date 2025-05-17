@@ -1,7 +1,8 @@
+streamlit
+stripe
 PyJWT
 httpx
-streamlit
 firebase-admin
 httpx-oauth
 nest_asyncio
-httpx
+python-dotenv
