@@ -1,87 +1,142 @@
 # **Raah-e-Hunar** - Empowering Rural Youth 🌾💪
 
-**Raah-e-Hunar** is a community-driven platform designed to help youth in rural and underserved areas by providing career guidance, training programs, job opportunities, and a simple way to search for online jobs. This Streamlit-based app brings essential resources to the fingertips of young individuals to kickstart their careers.
+**Raah-e-Hunar** is a community-driven platform designed to empower youth in rural and underserved areas by providing career guidance, skill development workshops (free and paid), job opportunities, and an easy way to search for online jobs. The app combines a Streamlit front-end with a FastAPI backend for payments and authentication, delivering a seamless experience.
+
+---
 
 ## Table of Contents
-1. [Features](#features)
-2. [Installation & Setup](#installation-setup)
-3. [Usage](#usage)
-4. [Try the App](#try-the-app)
-5. [Feedback](#feedback)
-6. [License](#license)
+1. [Features](#features)  
+2. [Installation & Setup](#installation--setup)  
+3. [Usage](#usage)  
+4. [Architecture](#architecture)  
+5. [Try the App](#try-the-app)  
+6. [Dependencies](#dependencies)  
+7. [Feedback](#feedback)  
+8. [License](#license)  
 
 ---
 
 ## Features
-- **Career Guidance**: Personalized recommendations based on your skills, education, and location.
-- **Training Programs**: Curated learning paths to help you develop job-ready skills.
-- **Job Opportunities**: Browse local and online job listings relevant to your profile.
-- **Online Job Search**: Search for global remote jobs with easy-to-use keyword filters.
-- **Feedback System**: Share your thoughts to improve the platform.
+- **Career Guidance**: Personalized career advice based on user skills and profile.  
+- **Training Programs**: Access curated workshops, some free and some paid via Stripe integration.  
+- **Free & Paid Workshops**: Freemium model allowing users to join a free workshop or pay for advanced workshops with Stripe checkout.  
+- **User Enrollment**: Tracks user workshop enrollment persistently for personalized recommendations and to prevent duplicate enrollments.  
+- **Job Opportunities**: Browse and search local and online job listings relevant to skills and preferences.  
+- **Authentication & Authorization**: Secure user login using JWT and OAuth for protected access to features.  
+- **Stripe Payment Integration**: Backend powered by FastAPI to create Stripe checkout sessions and handle webhooks for payment verification.  
+- **Feedback System**: Submit and display user feedback to improve platform features.  
 
 ---
 
 ## Installation & Setup
 
-### Requirements:
-1. Python 3.7 or higher
-2. Streamlit library
-3. Dependencies as mentioned in `requirements.txt`
+### Prerequisites:
+- Python 3.7+  
+- Stripe account (for payment integration)  
 
-### Steps:
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/raah-e-hunar.git
-   cd raah-e-hunar
-
-2. **Install Dependencies**:
-Install the required Python packages by running:
-
+### Clone the repo:
 ```bash
-Copy
-Edit
+git clone https://github.com/faryal16/Class_08_Raah-e-Hunar_app.git
+cd Class_08_Raah-e-Hunar_app
+```
+### Install Python dependencies:
+```bash
+
 pip install -r requirements.txt
 ```
-
-3. **Run the Streamlit App**:
-To launch the app, run the following command in the project directory:
-
-```bash
-Copy
-Edit
-streamlit run app.py
-```
-4. **Visit the App**:
-After running the above command, the app will open automatically in your default browser. If not, visit:
+### Environment Variables:
+Create a .env file in your backend directory with the following:
 
 ```bash
-Copy
-Edit
-http://localhost:8501
-```
 
+STRIPE_SECRET_KEY=your_stripe_secret_key_here
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret_here
+JWT_SECRET_KEY=your_jwt_secret_key_here
+```
+### Running the Backend (FastAPI):
+```bash
+
+uvicorn stripe_server:app --reload --host 127.0.0.1 --port 8000
+```
+### Running the Frontend (Streamlit):
+```bash
+
+streamlit run main.py
+```
 ### Usage
-1. Home Page: Introduction to the platform and available features like career guidance, job search, and more.
+- Login/Register with your credentials or OAuth provider.
 
-2. Career Center: Fill out a form with personal information and skills to get personalized career recommendations, training programs, and job opportunities.
+- Complete your profile with skills and email for personalized recommendations.
 
-3. Search Online Jobs: Use the search bar to find jobs by category (e.g., Python, Design, Marketing) or keyword (e.g., 'developer', 'teacher').
+- Browse workshops:
 
-4. About: Learn more about the platform’s mission, vision, and the services we offer.
+- Free workshops can be joined immediately.
 
-5. Feedback: Submit your feedback and view recent user feedback to improve the app.
+- Paid workshops have a "Pay with Stripe" button that opens the Stripe checkout session.
 
-## Try the App
-You can try the app directly by visiting the following link:
-Raah-e-Hunar on Streamlit[]
+- Enroll in workshops: User enrollment is saved to persistent storage to track progress and used free credits.
+
+- Search for jobs tailored to your skills and preferences.
+
+- Give Feedback to help us improve the platform.
+
+### Architecture
+- Frontend: Streamlit app (app.py) handling UI, user interaction, session state, and calling backend APIs.
+
+- Backend: FastAPI app (stripe_server.py) handling Stripe payment sessions, webhook events, and authentication.
+
+- Data Persistence: Workshop enrollment and user data stored using JSON files or Firebase (optional).
+
+- Authentication: JWT-based secure login and OAuth integrations using PyJWT and httpx-oauth.
+
+- Payment: Stripe API used for checkout sessions with handling for free workshops (price=0 logic in frontend).
+
+### Dependencies
+- streamlit — Frontend UI
+
+- fastapi — Backend API server
+
+- uvicorn — ASGI server for FastAPI
+
+- requests — HTTP client for backend/frontend communication
+
+- stripe — Stripe SDK for payment integration
+
+- PyJWT — JSON Web Token handling for authentication
+
+- httpx — Async HTTP client (used for OAuth)
+
+- httpx-oauth — OAuth client library
+
+- firebase-admin — For Firebase integration (optional for data storage)
+
+- nest_asyncio — Asyncio patching for compatibility (used in Streamlit backend calls)
+
+- python-dotenv — Load environment variables from .env file
+
+### Add these to your requirements.txt:
+```bash
+
+streamlit
+fastapi
+uvicorn
+requests
+stripe
+PyJWT
+httpx
+httpx-oauth
+firebase-admin
+nest_asyncio
+python-dotenv
+```
+### Try the App
+Try it yourself by running the app locally or access the deployed app (if hosted) at:
+(Raah-e-Hunar on Streamlit)[https://class08-raah-e-hunar-app.streamlit.app/]
 
 ### Feedback
-Your feedback is essential to help us improve the platform! You can provide feedback on the app’s features and performance through the Feedback section in the app.
+Your feedback matters! Please use the Feedback tab inside the app to submit your suggestions or report issues.
 
 ### License
-This project is open source and available under the MIT License.
+This project is licensed under the MIT License.
 
-Made with ❤️ for rural youth by **Code_With_Fairy**.
-
-
+**Made with ❤️ by Code_With_Fairy for empowering rural youth.**

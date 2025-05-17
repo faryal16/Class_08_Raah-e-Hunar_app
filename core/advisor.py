@@ -22,9 +22,6 @@ class CareerAdvisor:
             if skill in skill_based:
                 recommendations.extend(skill_based[skill])
 
-        # Add based on education level
-        if user.education.lower() == "college":
-            recommendations.extend(["Remote Assistant", "Teacher"])
 
         # Fallback if no matches
         if not recommendations:
