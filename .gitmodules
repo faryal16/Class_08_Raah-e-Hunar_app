@@ -1,3 +1,6 @@
 [submodule "stripe-backend-api"]
 	path = stripe-backend-api
 	url = https://github.com/faryal16/stripe-backend-api.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/faryal16/stripe-backend-api.git
