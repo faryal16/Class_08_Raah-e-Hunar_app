@@ -23,24 +23,28 @@ if "feedback_loaded" not in st.session_state:
 params = st.query_params
 if "payment" in params:
     if params["payment"] == "success":
-        st.title("Enrollment Confirmed")
-        st.balloons()
-        st.markdown("### ✅ Your workshop enrollment was successful!")
-        st.markdown("""
-        Thank you for enrolling in the workshop. We’re excited to have you onboard!
+        if not st.session_state.get("email"):
+            # Assume user will be re-logged in on next redirect
+            st.info("Verifying login session...")
+        else:
+            st.title("Enrollment Confirmed")
+            st.balloons()
+            st.markdown("### ✅ Your workshop enrollment was successful!")
+            st.markdown("""
+            Thank you for enrolling in the workshop. We’re excited to have you onboard!
 
-        🎓 **Workshop Status:** Confirmed  
-        📧 **Confirmation Email:** Sent to your registered email  
-        📅 **Workshop Start Date:** You will receive details shortly
+            🎓 **Workshop Status:** Confirmed  
+            📧 **Confirmation Email:** Sent to your registered email  
+            📅 **Workshop Start Date:** You will receive details shortly
 
-        If you have any questions or need assistance, please [contact us](#).
-        """)
-        if st.button("🏠 Go to Home"):
-            st.query_params.clear() 
-            st.session_state.page = "🏠 Home"
-            st.rerun()
-        st.stop()
-
+            If you have any questions or need assistance, please [contact us](#).
+            """)
+            if st.button("🏠 Go to Home"):
+                st.query_params.clear() 
+                st.session_state.page = "🏠 Home"
+                st.rerun()
+            st.stop()
+ 
 
     elif params["payment"] == "cancel":
         st.title("Payment Cancelled")
