@@ -81,7 +81,7 @@ class Workshop:
 
         try:
             response = requests.post(
-                "https://backend-api-vert-seven.vercel.app/create-checkout-session/",
+                "https://stripe-backend-api.vercel.app/api/create-checkout-session/",
                 json={
                     "title": workshop_title,
                     "price": matching["price"],
