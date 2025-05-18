@@ -22,10 +22,7 @@ class AuthManager:
 
         if not self.cookies.ready():
             st.stop() 
-        if "streamlit_app" in os.environ.get("HOST", ""):
-            self.redirect_url = "https://class08-raah-e-hunar-app.streamlit.app/"
-        else:
-            self.redirect_url = "http://localhost:8501/"
+        self.redirect_url = "https://class08-raah-e-hunar-app.streamlit.app/"
 
 
         json_str = os.getenv("FIREBASE_CREDENTIALS_JSON")
