@@ -1,4 +1,4 @@
-# from logging import st
+# fimports 
 import streamlit as st
 from core import workshop_data
 from core.authManager import AuthManager
@@ -12,6 +12,7 @@ from core.workshop import Workshop
 
 st.set_page_config(page_title="Raah-e-Hunar", page_icon="✨", layout="wide")
 
+# feedback loading
 if "feedback_loaded" not in st.session_state:
     FeedbackSystem.load_feedback()
     st.session_state.feedback_loaded = True
@@ -35,7 +36,7 @@ if "payment" in params:
         If you have any questions or need assistance, please [contact us](#).
         """)
         if st.button("🏠 Go to Home"):
-            st.query_params.clear()  # Clear ?payment=success from URL
+            st.query_params.clear() 
             st.session_state.page = "🏠 Home"
             st.rerun()
         st.stop()
@@ -45,7 +46,7 @@ if "payment" in params:
         st.title("Payment Cancelled")
         st.warning("⚠️ Payment was cancelled. No charges were made.")
         if st.button("🏠 Go to Home"):
-            st.set_query_params()  # clears all URL query params
+            st.set_query_params()  
             if "email" in st.session_state and st.session_state.email:
                 st.session_state.page = "🏠 Home"
             else:
