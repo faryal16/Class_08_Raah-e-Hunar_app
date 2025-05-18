@@ -12,7 +12,6 @@ from core.workshop import Workshop
 import os
 os.system('pip install httpx')
 
-st.set_page_config(page_title="Raah-e-Hunar", page_icon="✨", layout="wide")
 
 # feedback loading
 if "feedback_loaded" not in st.session_state:
@@ -60,6 +59,7 @@ if "payment" in params:
             st.rerun()
 
     
+st.set_page_config(page_title="Raah-e-Hunar", page_icon="✨", layout="wide")
 # Auth
 auth_manager = AuthManager()
 if not st.session_state.get("email"):
