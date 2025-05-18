@@ -34,10 +34,20 @@ class AuthManager:
             # Load from environment variable (string)
             cred_dict = json.loads(json_str)
             self.cred = credentials.Certificate(cred_dict)
+
         elif "firebase_credentials_json" in st.secrets:
             # Load from Streamlit secrets.toml
-            cred_dict = json.loads(st.secrets["firebase_credentials_json"])
+            firebase_cred = st.secrets["firebase_credentials_json"]
+
+            if isinstance(firebase_cred, str):
+                # If it's a JSON string, parse it
+                cred_dict = json.loads(firebase_cred)
+            else:
+                # If it's already a dict, use as is
+                cred_dict = firebase_cred
+
             self.cred = credentials.Certificate(cred_dict)
+
         else:
             # fallback local file
             self.cred = credentials.Certificate("raah-e-hunar-firebase-adminsdk-fbsvc-bab7ff5e7e.json")
