@@ -11,3 +11,4 @@ wheels/
 .env
 .streamlit/secrets.toml
 *.json  # if you have credential json files
+*raah-e-hunar-firebase-adminsdk-fbsvc-bab7ff5e7e.json

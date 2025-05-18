@@ -8,6 +8,7 @@ from httpx_oauth.clients.google import GoogleOAuth2
 import nest_asyncio
 import jwt
 from streamlit_cookies_manager import EncryptedCookieManager
+import json
 
 nest_asyncio.apply()
 
@@ -27,7 +28,20 @@ class AuthManager:
             else "http://localhost:8501/"
         )
 
-        self.cred = credentials.Certificate("raah-e-hunar-a058449cbf3b.json")
+        json_str = os.getenv("FIREBASE_CREDENTIALS_JSON")
+
+        if json_str:
+            # Load from environment variable (string)
+            cred_dict = json.loads(json_str)
+            self.cred = credentials.Certificate(cred_dict)
+        elif "firebase_credentials_json" in st.secrets:
+            # Load from Streamlit secrets.toml
+            cred_dict = json.loads(st.secrets["firebase_credentials_json"])
+            self.cred = credentials.Certificate(cred_dict)
+        else:
+            # fallback local file
+            self.cred = credentials.Certificate("raah-e-hunar-firebase-adminsdk-fbsvc-bab7ff5e7e.json")
+
         try:
             firebase_admin.get_app()
         except ValueError:
