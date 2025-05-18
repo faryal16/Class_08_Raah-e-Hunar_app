@@ -16,8 +16,10 @@ fastapi
 stripe
 python-dotenv
 uvicorn
+<<<<<<< Updated upstream
 
 streamlit>=1.33.0
+fastapi
 stripe>=8.0.0
 PyJWT>=2.8.0
 firebase-admin>=6.3.0
@@ -26,3 +28,5 @@ nest_asyncio>=1.6.0
 python-dotenv>=1.0.1
 streamlit-cookies-manager>=0.0.6  # Important!
 
+=======
+>>>>>>> Stashed changes
