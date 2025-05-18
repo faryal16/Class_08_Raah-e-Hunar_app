@@ -136,13 +136,14 @@ class AuthManager:
             self.message_container = st.empty()
             self.login_button_container = st.empty()
             self.login_button_container.markdown(
-                f'<a href="{authorization_url}" target="_self" style="text-decoration:none">'
+                f'<a href="{authorization_url}" target="_blank" rel="noopener noreferrer" style="text-decoration:none">'
                 f'<button style="background-color:#4285F4;color:white;padding:10px 20px;'
                 f'border:none;border-radius:5px;cursor:pointer;font-size:16px;">'
                 f'Login with Google</button></a>', unsafe_allow_html=True)
             self.message_container.empty()
         except Exception:
             self.show_error("Error generating login URL.")
+
 
     def show_error(self, message):
         self.message_container.error(message)
