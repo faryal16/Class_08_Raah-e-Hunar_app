@@ -9,6 +9,8 @@ from core.job import JobOpportunity
 from core.feedback import FeedbackSystem
 from core.jobsearch import JobSearcher
 from core.workshop import Workshop
+import os
+os.system('pip install httpx')
 
 st.set_page_config(page_title="Raah-e-Hunar", page_icon="✨", layout="wide")
 
