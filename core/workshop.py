@@ -1,6 +1,6 @@
 
 import requests
-
+import json
 
 class Workshop:
     # Skill to workshop mapping with title and price (0 = free)
@@ -81,7 +81,7 @@ class Workshop:
 
         try:
             response = requests.post(
-                "https://class08-raah-e-hunar-app.streamlit.app/api/create-checkout-session/",
+                "https://class08-raah-e-hunar-app.streamlit.app/create-checkout-session/",
                 json={
                     "title": workshop_title,
                     "price": matching["price"],
